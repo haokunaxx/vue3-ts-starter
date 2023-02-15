@@ -9,6 +9,8 @@ import Components from 'unplugin-vue-components/vite'
 
 // ElementPlus 按需导入
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+// elementPlus 按需导入
+import IconsResolver from 'unplugin-icons/resolver'
 
 // 本地svg图标资源支持
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
@@ -37,8 +39,14 @@ export default defineConfig(({ command }) => {
         // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
         imports: ['vue'],
 
-        // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+          // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
+          ElementPlusResolver(),
+          // 自动导入图标组件
+          IconsResolver({
+            prefix: 'Icon'
+          })
+        ],
 
         include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
         dts: path.resolve(pathSrc, 'auto-import.d.ts')
@@ -46,7 +54,11 @@ export default defineConfig(({ command }) => {
       Components({
         resolvers: [
           // 自动导入 Element Plus 组件
-          ElementPlusResolver()
+          ElementPlusResolver(),
+          // 自动注册图标组件
+          IconsResolver({
+            enabledCollections: ['ep']
+          })
         ],
         dts: path.resolve(pathSrc, 'components.d.ts')
       }),

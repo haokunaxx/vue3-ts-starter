@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
-import {SvgIcon} from '@/components/Icon/index'
+import {SvgIcon, EpIcon} from '@/components/Icon/index'
+import { Share } from '@element-plus/icons'
 </script>
 
 <template>
   <div>
+    <ElIcon :is-loading="true" :size="40" >
+      <Share />
+    </ElIcon>
+    <EpIcon :is-loading="true" icon="Share" :size="40" color="#2c82fd"/>
     <SvgIcon :size="40" :spin="true" name="dynamic-avatar-1" />
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
