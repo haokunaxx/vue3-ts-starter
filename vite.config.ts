@@ -21,7 +21,7 @@ const pathSrc = path.resolve(__dirname, 'src')
 
 const svgIconsPluginCreator = (isBuild: boolean) => {
   const svgIconsPlugin = createSvgIconsPlugin({
-    iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
+    iconDirs: [path.resolve(process.cwd(), 'src/assets/icons/svg')],
     svgoOptions: isBuild,
     symbolId: 'icon-[dir]-[name]'
   })
