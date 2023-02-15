@@ -1,9 +1,22 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+// import {SvgIcon, EpIcon} from '@/components/Icon/index'
+// import { Share } from '@element-plus/icons'
+
+import Icon from '@/components/Icon/index'
 </script>
 
 <template>
   <div>
+    <Icon :size="40" :spin="true" icon="dynamic-avatar-1|svg"/>
+    <Icon :spin="true" :iconfont="true" prefix="#" icon="icon-list"/>
+    <Icon icon="mdi:google-downasaur" :size="40"/>
+    <ElIcon :is-loading="true" :size="40" >
+      <i-ep-share />
+    </ElIcon>
+    <!-- <EpIcon :is-loading="true" icon="Share" :size="40" color="#2c82fd"/>
+    <SvgIcon :size="40" :spin="true" name="dynamic-avatar-1" /> -->
+
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
