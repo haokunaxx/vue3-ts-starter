@@ -11,6 +11,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // elementPlus 按需导入
 import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
 
 // 本地svg图标资源支持
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
@@ -61,6 +62,10 @@ export default defineConfig(({ command }) => {
           })
         ],
         dts: path.resolve(pathSrc, 'components.d.ts')
+      }),
+      // fix: element-plus icon按需引入自动安装 <i-ep-xxx>
+      Icons({
+        autoInstall: true
       }),
       svgIconsPluginCreator(isBuild)
     ],

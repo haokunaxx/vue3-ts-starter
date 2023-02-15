@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     Icon: typeof import('./components/Icon/src/Icon.vue')['default']
     IconifyTest: typeof import('./components/Icon/src/IconifyTest.vue')['default']
+    IEpShare: typeof import('~icons/ep/share')['default']
     SvgIcon: typeof import('./components/Icon/src/SvgIcon.vue')['default']
   }
 }
