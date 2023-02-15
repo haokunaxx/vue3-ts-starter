@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+import {SvgIcon} from '@/components/Icon/index'
 </script>
 
 <template>
   <div>
+    <SvgIcon :size="40" :spin="true" name="dynamic-avatar-1" />
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
