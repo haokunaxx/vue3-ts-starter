@@ -1,9 +1,9 @@
 module.exports = {
   extends: [
     'stylelint-config-standard',
-    'stylelint-config-prettier',
     'stylelint-config-recommended-scss',
-    'stylelint-config-standard-vue'
+    'stylelint-config-standard-vue',
+    'stylelint-config-prettier'
   ],
   plugins: ['stylelint-order'],
   // 不同格式的文件指定自定义语法
@@ -27,6 +27,8 @@ module.exports = {
     '**/*.yaml'
   ],
   rules: {
+    'keyframes-name-pattern': null,
+    'declaration-block-trailing-semicolon': null,
     'no-descending-specificity': null, // 禁止在具有较高优先级的选择器后出现被其覆盖的较低优先级的选择器
     'selector-pseudo-element-no-unknown': [
       true,
