@@ -1,3 +1,6 @@
+// 注册svg图标
+import 'virtual:svg-icons-register'
+
 import { createApp } from 'vue'
 
 // 支持SvgIcon
@@ -9,5 +12,7 @@ import '@/assets/iconfont/iconfont'
 import '@/assets/iconfont/iconfont.css'
 
 import App from './App.vue'
+
+import '@/assets/icons/iconfont'
 
 createApp(App).mount('#app')
