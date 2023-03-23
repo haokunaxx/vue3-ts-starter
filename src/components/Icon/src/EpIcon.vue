@@ -15,15 +15,15 @@ export default defineComponent({
   props: {
     // icon: string<ElIconList>(),
     icon: {
-      type:String as PropType<ElIconList>,
-      required:true
+      type: String as PropType<ElIconList>,
+      required: true
     },
     size: {
       type: [String, Number] as PropType<string | number>,
       default: 16
     },
     isLoading: propTypes.bool,
-    color: propTypes.string,
+    color: propTypes.string
   },
   setup(props) {
     const attrs = useAttrs()
