@@ -11,6 +11,8 @@ import '@purge-icons/generated'
 import '@/assets/iconfont/iconfont'
 import '@/assets/iconfont/iconfont.css'
 
+import 'animate.css'
+
 import App from './App.vue'
 
 import '@/assets/icons/iconfont'
