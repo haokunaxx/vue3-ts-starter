@@ -16,7 +16,7 @@ export function timeFormat(timestamp = Date.now(), format = 'YYYY-MM-DD') {
     }
   return Object.keys(timeDetailObj).reduce(
     (str, key) =>
-      str.replace(new RegExp('(' + key + ')'), ($, $1) =>
+      str.replace(new RegExp('(' + key + ')'), (_, $1) =>
         String(timeDetailObj[key]).padStart($1.length, '0')
       ),
     format

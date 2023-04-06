@@ -2,7 +2,7 @@ module.exports = {
   // 可选类型
   types: [
     {
-      value: ':sparkles: feat',
+      value: 'feat',
       name: '✨ feat:      新功能'
     },
     {
