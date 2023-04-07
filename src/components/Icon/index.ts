@@ -13,6 +13,9 @@
 // }
 
 // export const Icon = withInstall(BasicIcon)
-import ElIcon from './src/ElIcon.vue'
+// import ElIcon from './src/ElIcon.vue'
+import Icon from './src/Icon.vue'
 import SvgIcon from './src/SvgIcon.vue'
-export { ElIcon, SvgIcon }
+import EpIcon from './src/EpIcon.vue'
+
+export { EpIcon, SvgIcon, Icon }
