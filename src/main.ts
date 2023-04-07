@@ -3,6 +3,7 @@ import 'virtual:svg-icons-register'
 
 import { createApp } from 'vue'
 
+import { router } from '@/router/index'
 // 支持SvgIcon
 import 'virtual:svg-icons-register'
 // 支持iconify
@@ -15,4 +16,7 @@ import App from './App.vue'
 
 import '@/assets/icons/iconfont'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+
+app.use(router)
+app.mount('#app')
