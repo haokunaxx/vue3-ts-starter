@@ -21,9 +21,9 @@ $lightTextColor: #fff;
 @mixin widthToZero {
   .width-to-zero-enter-from,
   .width-to-zero-leave-to {
+    overflow: hidden;
     padding: 0;
     width: 0;
-    overflow: hidden;
   }
 
   .width-to-zero-leave-active,

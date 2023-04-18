@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import Application from '../Application/applicationList.vue'
+import Application from '../Application/index.vue'
 import SidebarMenu from '../SidebarMenu/index.vue'
 interface Props {
   isPopMenu?: boolean
@@ -47,7 +47,7 @@ const bindingValue = computed(() => {
 .el-popper {
   .el-menu--vertical {
     .el-menu {
-      // 重置popMenu的选中项的父级高亮
+      // 重置SubMenu popMenu的选中项的父级高亮
       .el-sub-menu.is-active {
         & > .el-sub-menu__title {
           .common-menu-item,

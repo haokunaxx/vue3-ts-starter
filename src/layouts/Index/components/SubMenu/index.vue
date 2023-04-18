@@ -23,14 +23,5 @@ const props = withDefaults(defineProps<Props>(), {
   background-color: #fff;
   box-shadow: 10px 0 10px -10px rgb(0 0 0 / 30%);
   transition: width 0.3s ease;
-
-  // :deep(.el-menu) {
-  //   width: 100%;
-  //   height: 100%;
-
-  //   // .el-sub-menu__title {
-  //   //   padding: 0;
-  //   // }
-  // }
 }
 </style>

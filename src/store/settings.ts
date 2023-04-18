@@ -1,6 +1,4 @@
 import { defineStore } from 'pinia'
-// import type { RouteRecordRaw } from 'vue-router'
-// import { useRoute } from 'vue-router'
 import { useRouteStore } from './route'
 import { RouteRecordRaw } from 'vue-router'
 

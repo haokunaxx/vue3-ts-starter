@@ -17,7 +17,8 @@ import App from './App.vue'
 
 import '@/assets/icons/iconfont'
 import '@/styles/reset.scss'
-import '@/styles/common.scss'
+// import '@/styles/common.scss'
+import '@/styles/index.scss'
 
 import './router/permission'
 

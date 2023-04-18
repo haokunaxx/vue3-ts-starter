@@ -1,4 +1,13 @@
 import { useSettingsStore } from '@/store/settings'
+/*
+布局模式：
+一：左1应用程序 - 左2导航菜单 - 右内容区（mode-left）
+二：左导航菜单 - 右内容区(mode-none)
+三：左边应用程序（导航菜单popover）右边内容区(mode-left-pop)
+四：上应用程序（导航菜单popover）下方内容区(mode-top-pop)
+五：上方头部显示应用程序 - 下方（左导航菜单 和 右内容区 ）(mode-top-left)
+六：上导航菜单 下（左应用程序 右内容 ）（mode-left-top）
+*/
 enum LayoutMode {
   MODE_LEFT = 'mode_left',
   MODE_NONE = 'mode_none',
@@ -16,6 +25,7 @@ enum LayoutElem {
 }
 
 export function useLayout() {
+  // 所有布局类型
   const layouts = {
     [LayoutMode.MODE_LEFT]: {
       mode: LayoutMode.MODE_LEFT,
@@ -65,14 +75,15 @@ export function useLayout() {
 
   const isMultiApplication = settingsStore.isMultiApplication
 
+  // 当前布局模式
   const layoutMode = ref<LayoutMode>(
-    isMultiApplication ? LayoutMode.MODE_LEFT_POP : LayoutMode.MODE_NONE
+    isMultiApplication ? LayoutMode.MODE_TOP_POP : LayoutMode.MODE_NONE
   )
 
-  // const layout = ref<LayoutElem[]>(LayoutElem[layoutMode.value].layout)
-
+  // 当前布局模式下的布局信息
   const layout = computed(() => layouts[layoutMode.value].layout)
 
+  // 修改布局
   const changeLayout = (newLayoutMode: LayoutMode) => {
     layoutMode.value = newLayoutMode
   }
@@ -88,28 +99,39 @@ export function useLayout() {
     return ret
   }
 
-  const headerApplicationShow = computed(() =>
+  // 是否是header应用列表
+  const isHeaderApplication = computed(() =>
     includes(layout.value, LayoutElem.ELEM_HEADER_APPLICATION)
   )
 
-  const applicationIsPopMenu = computed(() => {
+  // 是否是header菜单
+  const isHeaderMenu = computed(() =>
+    includes(layout.value, LayoutElem.ELEM_HEADER_MENU)
+  )
+
+  // header是否显示
+  const headerShow = computed(
+    () => isHeaderApplication.value || isHeaderMenu.value
+  )
+
+  // 主菜单是否显示
+  const mainMenuShow = computed(() =>
+    includes(layout.value, LayoutElem.ELEM_APPLICATION)
+  )
+
+  // 次级菜单是否显示
+  const subMenuShow = computed(() =>
+    includes(layout.value, LayoutElem.ELEM_MENU)
+  )
+
+  // 是否是弹出菜单
+  const isPopMenu = computed(() => {
     return [LayoutMode.MODE_LEFT_POP, LayoutMode.MODE_TOP_POP].includes(
       layoutMode.value
     )
   })
 
-  const headerMenuShow = computed(() =>
-    includes(layout.value, LayoutElem.ELEM_HEADER_MENU)
-  )
-
-  const applicationShow = computed(() =>
-    includes(layout.value, LayoutElem.ELEM_APPLICATION)
-  )
-
-  const sidebarShow = computed(() =>
-    includes(layout.value, LayoutElem.ELEM_MENU)
-  )
-
+  // 通过是否存在MainMenu级别的菜单进行过滤后的可选布局列表
   const filterLayouts = computed(() => {
     if (isMultiApplication) {
       return layouts
@@ -131,19 +153,16 @@ export function useLayout() {
       }, {} as typeof layouts)
     }
   })
-  console.log(filterLayouts)
-  // changeLayout([...defaultLayout])
-  // changeLayout([LayoutElem.ELEM_HEADER_APPLICATION, LayoutElem.ELEM_MENU])
 
   return {
     layout,
-    // layouts,
     layouts: filterLayouts,
     changeLayout,
-    headerApplicationShow,
-    headerMenuShow,
-    applicationShow,
-    sidebarShow,
-    applicationIsPopMenu
+    headerShow,
+    isHeaderApplication,
+    isHeaderMenu,
+    mainMenuShow,
+    subMenuShow,
+    isPopMenu
   }
 }

@@ -1,9 +1,0 @@
-// .hello {
-//   background-color: #fff;
-// }
-
-::v-deep() .el-menu-item,
-::v-deep() .el-sub-menu .el-sub-menu__title {
-  padding: 0;
-  line-height: unset;
-}

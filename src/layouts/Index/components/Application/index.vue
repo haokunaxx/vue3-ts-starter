@@ -1,104 +1,72 @@
 <template>
-  <div class="application-wrapper">
-    <!-- 弹出菜单 -->
-    <PopMenu v-if="props.type === 'popMenu'" :position="position" />
-    <!-- 应用程序列表 -->
-    <ApplicationList v-else :position="position" />
+  <div class="application-list-wrapper">
+    <template v-if="position === 'side'">
+      <!-- logo -->
+    </template>
+    <ul
+      :class="[
+        'application-list',
+        props.position === 'header' ? 'horizontal' : ''
+      ]"
+    >
+      <li
+        v-for="(application, index) in applicationList"
+        :key="index"
+        :class="[
+          'application-list-item',
+          activeApplication === index && 'active'
+        ]"
+        @click="toggleApplication(index)"
+      >
+        <Title
+          :active="activeApplication === index"
+          :icon="application.icon"
+          :iconSize="24"
+          :title="application.title"
+          direction="vertical"
+        />
+      </li>
+    </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-import PopMenu from './popMenu.vue'
-import ApplicationList from './applicationList.vue'
+import { storeToRefs } from 'pinia'
+import Title from '../SidebarMenu/title.vue'
+import { useSettingsStore } from '@/store/settings'
 interface Props {
-  type?: 'applicationList' | 'popMenu'
   position?: 'header' | 'side'
 }
+
 const props = withDefaults(defineProps<Props>(), {
-  type: 'applicationList',
   position: 'side'
 })
+
+const settingsStore = useSettingsStore()
+const { applicationList, activeApplication } = storeToRefs(settingsStore)
+const toggleApplication = (index: number) => {
+  settingsStore.toggleApplication(index)
+}
 </script>
 
 <style lang="scss" scoped>
-// @import '@/styles/sidebar';
 @import '../../styles/index';
 
-.application-wrapper {
-  width: 100%;
-  height: 100%;
-  background: $applicationListBg;
+.application-list-wrapper {
+  .application-list {
+    display: flex;
+    flex-direction: column;
 
-  :deep() {
-    .sidebar-menu-wrapper {
-      .el-menu {
-        width: $applicationItemWidth;
-
-        .el-menu-item,
-        .el-sub-menu .el-sub-menu__title {
-          padding: 0;
-          line-height: unset;
-        }
-
-        &.el-menu--horizontal {
-          overflow: hidden;
-          width: 100%;
-          height: 68px;
-          background-color: #20233a;
-
-          .el-sub-menu {
-            width: var(--el-menu-item-height);
-          }
-        }
-
-        .el-sub-menu {
-          padding: $applicationItemPadding;
-          height: var(--el-menu-item-height);
-          background-color: #20233a;
-
-          .el-tooltip__trigger {
-            border: none;
-          }
-
-          .common-menu-item {
-            .common-menu-item-icon {
-              span {
-                font-size: 24px;
-              }
-
-              margin: 0 0 6px;
-            }
-
-            .common-menu-item-text {
-              font-size: 12px;
-            }
-          }
-        }
-      }
+    &.horizontal {
+      flex-direction: row;
     }
-  }
-}
-</style>
-<style lang="scss">
-// popover menu active
-.el-popper {
-  .el-menu {
-    .el-sub-menu.is-active > .el-tooltip__trigger {
-      border: none;
 
-      .common-menu-item {
-        &-icon {
-          color: #2c82fd;
-        }
-
-        &-text {
-          color: #2c82fd;
-        }
-      }
-
-      .el-icon {
-        color: #2c82fd;
-      }
+    &-item {
+      box-sizing: border-box;
+      padding: $applicationItemPadding;
+      width: $applicationItemWidth;
+      height: $applicationItemHeight;
+      color: $applicationItemTextColor;
     }
   }
 }

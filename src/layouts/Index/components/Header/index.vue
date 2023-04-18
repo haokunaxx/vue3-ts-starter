@@ -3,10 +3,7 @@
     <div class="header-left" v-if="$slots.left">
       <slot name="left"></slot>
     </div>
-    <div
-      :class="['header-middle', isPopMenu && 'pop-menu']"
-      :style="{ height: headerHeight }"
-    >
+    <div :class="['header-middle', isPopMenu && 'pop-menu']">
       <!-- 顶部应用程序 -->
       <Application
         v-if="isApplication && !isPopMenu"
@@ -15,14 +12,14 @@
       <!-- 顶部导航菜单 -->
       <SidebarMenu v-else v-bind="sidebarMenuBindingValue" />
     </div>
-    <div class="header-right" v-if="$slots.right">
-      <slot name="right"></slot>
+    <div class="header-right" v-if="$slots.right && !isMenu">
+      <slot name="right"> </slot>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import Application from '../Application/applicationList.vue'
+import Application from '../Application/index.vue'
 import SidebarMenu from '../SidebarMenu/index.vue'
 interface Props {
   isApplication: boolean //是应用程序列表
@@ -67,10 +64,9 @@ const applicationBindingValue = computed<{
     : {}
 })
 
-const headerHeight = computed(() => {
-  // return isMenu ? (isPopMenu.value ? '68px' : '56px') : '68px'
-  return '68px'
-})
+// const headerHeight = computed(() => {
+//   return '68px'
+// })
 </script>
 
 <style lang="scss" scoped>
@@ -82,6 +78,7 @@ const headerHeight = computed(() => {
   overflow: hidden;
   width: 100%;
   height: 68px;
+  box-sizing: border-box;
   background-color: #20233a;
 
   & > div {
@@ -89,6 +86,7 @@ const headerHeight = computed(() => {
   }
 
   .header-middle {
+    height: 68px;
     flex: 1;
 
     .sidebar-menu-wrapper {
@@ -102,8 +100,7 @@ const headerHeight = computed(() => {
   }
 
   .header-right {
-    width: 300px;
-    background-color: pink;
+    height: 68px;
   }
 }
 
@@ -112,6 +109,7 @@ const headerHeight = computed(() => {
   background-color: #20233a;
 
   .el-menu {
+    height: 70px;
     background-color: #20233a;
 
     .el-sub-menu {
