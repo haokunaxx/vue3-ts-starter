@@ -2,7 +2,7 @@
 import 'virtual:svg-icons-register'
 
 import { createApp } from 'vue'
-
+import { createPinia } from 'pinia'
 import { router } from '@/router/index'
 // 支持SvgIcon
 import 'virtual:svg-icons-register'
@@ -12,11 +12,17 @@ import '@purge-icons/generated'
 import '@/assets/iconfont/iconfont'
 import '@/assets/iconfont/iconfont.css'
 
+import 'animate.css'
 import App from './App.vue'
 
 import '@/assets/icons/iconfont'
+import '@/styles/reset.scss'
+import '@/styles/common.scss'
+
+import './router/permission'
 
 const app = createApp(App)
 
 app.use(router)
+app.use(createPinia())
 app.mount('#app')

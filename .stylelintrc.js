@@ -27,6 +27,12 @@ module.exports = {
     '**/*.yaml'
   ],
   rules: {
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: ['mixin', 'include', 'extend', 'import']
+      }
+    ],
     'keyframes-name-pattern': null,
     'declaration-block-trailing-semicolon': null,
     'no-descending-specificity': null, // 禁止在具有较高优先级的选择器后出现被其覆盖的较低优先级的选择器
@@ -42,6 +48,7 @@ module.exports = {
         ignorePseudoClasses: ['deep']
       }
     ],
+    'selector-class-pattern': null,
     // 指定样式的排序
     'order/properties-order': [
       'position',

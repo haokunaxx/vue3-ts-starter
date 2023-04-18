@@ -73,6 +73,12 @@ export default defineConfig(({ command }) => {
         dts: path.resolve(pathSrc, 'components.d.ts')
       })
     ],
+    preprocessorOptions: {
+      // 导入scss预编译程序
+      scss: {
+        additionalData: `@use "@/styles/mixin.scss" as *;`
+      }
+    },
     resolve: {
       alias: {
         '@': '/src'

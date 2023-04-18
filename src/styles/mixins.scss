@@ -1,0 +1,18 @@
+@mixin vh-center($dir: row) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $dir;
+}
+
+@mixin ellipse {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin flex-r {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

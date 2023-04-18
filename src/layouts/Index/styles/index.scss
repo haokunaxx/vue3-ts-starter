@@ -1,0 +1,46 @@
+$applicationListWidth: 68px;
+$applicationListBg: #20233a;
+
+$applicationItemWidth: 68px;
+$applicationItemHeight: 68px;
+
+$applicationItemPadding: 6px;
+
+$applicationItemActiveBg: #fff;
+$applicationItemBg: #20233a;
+$applicationItemHoverBg: rgb(232 232 232 / 30%);
+
+$applicationItemTextColor: #fff;
+
+$sidebarMenuItemActive: #2c82fd;
+$sidebarMenuItemBg: rgb(232 232 232);
+$sidebarMenuItemHoverBg: #e1e1e1;
+
+$lightTextColor: #fff;
+
+@mixin widthToZero {
+  .width-to-zero-enter-from,
+  .width-to-zero-leave-to {
+    padding: 0;
+    width: 0;
+    overflow: hidden;
+  }
+
+  .width-to-zero-leave-active,
+  .width-to-zero-enter-active {
+    transition: all 0.3s ease;
+  }
+}
+
+@mixin heightToZero {
+  .height-to-zero-enter-from,
+  .height-to-zero-leave-to {
+    overflow: hidden;
+    height: 0;
+  }
+
+  .height-to-zero-leave-active,
+  .height-to-zero-enter-active {
+    transition: all 0.3s ease;
+  }
+}

@@ -8,4 +8,13 @@ declare module 'vue' {
     | FunctionalComponent<Props>
 }
 
+declare module 'vue-router' {
+  export type ApplicationRoute = {
+    meta: {
+      [key: string]: any
+    }
+    children: RouteRecordRaw[]
+  }
+}
+
 export {}
