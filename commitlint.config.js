@@ -16,7 +16,8 @@ module.exports = {
         'revert',
         'style',
         'test',
-        'anno'
+        'anno',
+        'merge'
       ]
     ]
   }

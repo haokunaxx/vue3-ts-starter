@@ -1,10 +1,18 @@
 const toStr = Object.prototype.toString
-export enum IsTypeList {
-  STRING = '[object String]',
-  ARRAY = '[object Array]'
-}
-export const isString = (val: unknown): val is string =>
-  toStr.call(val) === '[object String]'
 
-export const typeIs = (target: unknown, type: IsTypeList): boolean =>
+enum TypeMap {
+  NUMBER = '[object Number]',
+  STRING = '[object String]',
+  BOOLEAN = '[object Boolean]',
+  ARRAY = '[object Array]',
+  OBJECT = '[object Object]'
+}
+
+export const typeIs = (target: unknown, type: TypeMap): boolean =>
   toStr.call(target) === type
+
+export const isString = (val: unknown): val is string =>
+  toStr.call(val) === TypeMap.STRING
+
+export const isArray = (val: unknown): val is any[] =>
+  toStr.call(val) === TypeMap.ARRAY

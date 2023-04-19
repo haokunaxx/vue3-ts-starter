@@ -42,6 +42,10 @@ module.exports = {
     {
       value: 'build',
       name: '🚀 build:     打包'
+    },
+    {
+      value: 'merge',
+      name: 'merge: 分支合并（合并冲突处理）'
     }
   ],
 
