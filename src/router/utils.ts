@@ -1,13 +1,13 @@
 import { RouteRecordRaw } from 'vue-router'
-import { typeIs, IsTypeList } from '@/utils/is'
+import { isString, isArray } from '@/utils/is'
 
 // 判断是否存在权限
 const hasPermission = (roles: string[], route: RouteRecordRaw): boolean => {
   if (route.meta?.roles) {
     return roles.some((role) => {
-      if (typeIs(route.meta?.roles, IsTypeList.STRING)) {
+      if (isString(route.meta?.roles)) {
         return role === route.meta?.roles
-      } else if (typeIs(route.meta?.roles, IsTypeList.ARRAY)) {
+      } else if (isArray(route.meta?.roles)) {
         return (route.meta?.roles as string[]).includes(role)
       }
     })

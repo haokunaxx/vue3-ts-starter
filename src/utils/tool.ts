@@ -1,3 +1,5 @@
+import cloneDeep from 'lodash/cloneDeep'
+import { isObject } from '@/utils/is'
 /**
  * 根据时间戳和指定格式生成对应格式日期时间字符串, 默认为当前
  * @param { number } 时间戳
@@ -21,4 +23,14 @@ export function timeFormat(timestamp = Date.now(), format = 'YYYY-MM-DD') {
       ),
     format
   )
+}
+
+export function deepMerge(source: any = {}, target: any = {}) {
+  const res = cloneDeep(source)
+  for (const key in target) {
+    res[key] = isObject(res[key])
+      ? deepMerge(res[key], target[key])
+      : (res[key] = target[key])
+  }
+  return res
 }
