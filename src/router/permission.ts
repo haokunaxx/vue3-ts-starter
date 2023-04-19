@@ -3,7 +3,7 @@ import { useUserStore } from '@/store/user'
 import { useRouteStore } from '@/store/route'
 import { useSettingsStore } from '@/store/settings'
 import { getToken } from '@/utils/auth'
-import { multiApplicationAuthRoutes } from './auth'
+import { authRoutes } from './authRoutes'
 
 router.beforeEach(async (to, _, next) => {
   const userStore = useUserStore(),
@@ -22,7 +22,7 @@ router.beforeEach(async (to, _, next) => {
           next()
         } else {
           // 生成路由然后跳转
-          routeStore.generateAuthRoutes(multiApplicationAuthRoutes)
+          routeStore.generateAuthRoutes(authRoutes)
           routeStore.configAuthRoutes()
           settingsStore.redirectCorrectApplication(to.path)
           next({ ...to, replace: true })

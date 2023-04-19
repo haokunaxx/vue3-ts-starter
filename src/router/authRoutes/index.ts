@@ -2,11 +2,7 @@ import { RouteRecordRaw } from 'vue-router'
 import { BreadcrumbRoute } from './breadcrumb'
 import { MultiLevelMenuRoute } from './multiLevelMenu'
 
-const getAuthRoutes = () => [...BreadcrumbRoute, ...MultiLevelMenuRoute]
-
-export const authRoutes = [...getAuthRoutes()]
-
-export const multiApplicationAuthRoutes: RouteRecordRaw[] = [
+export const authRoutes: RouteRecordRaw[] = [
   {
     meta: {
       title: '应用一',
@@ -28,7 +24,11 @@ export const multiApplicationAuthRoutes: RouteRecordRaw[] = [
     children: MultiLevelMenuRoute
   }
 ]
-export const singleApplicationAuthRoutes: RouteRecordRaw[] = [
-  ...BreadcrumbRoute,
-  ...MultiLevelMenuRoute
-]
+
+// const getAuthRoutes = () => [...BreadcrumbRoute, ...MultiLevelMenuRoute]
+// export const authRoutes = [...getAuthRoutes()]
+
+// export const singleApplicationAuthRoutes: RouteRecordRaw[] = [
+//   ...BreadcrumbRoute,
+//   ...MultiLevelMenuRoute
+// ]

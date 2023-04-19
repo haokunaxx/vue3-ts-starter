@@ -77,7 +77,7 @@ export function useLayout() {
 
   // 当前布局模式
   const layoutMode = ref<LayoutMode>(
-    isMultiApplication ? LayoutMode.MODE_TOP_POP : LayoutMode.MODE_NONE
+    isMultiApplication ? LayoutMode.MODE_LEFT : LayoutMode.MODE_NONE
   )
 
   // 当前布局模式下的布局信息
