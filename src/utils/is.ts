@@ -20,3 +20,24 @@ export const isFn = (target: unknown): target is Function =>
 
 export const isObject = (target: unknown): target is Object =>
   toStr.call(target) === TypeMap.OBJECT
+
+export const isNull = (target: unknown): target is null => target === null
+
+export const isEmpty = (target: unknown): boolean => {
+  if (isObject(target)) {
+    return Object.keys(target).length === 0
+  }
+  if (isArray(target)) {
+    return target.length === 0
+  }
+
+  if (target instanceof Map || target instanceof Set) {
+    return target.size === 0
+  }
+
+  return false
+}
+
+export const isDef = (target: unknown): boolean => target !== undefined
+
+export const isUnDef = (target: unknown): boolean => !isDef(target)

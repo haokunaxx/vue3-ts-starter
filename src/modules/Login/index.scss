@@ -1,0 +1,59 @@
+@import '@/styles/mixins';
+
+.login-page-container {
+  height: 100%;
+  width: 100%;
+  background-color: #f6f6f6;
+  overflow: hidden;
+  .center-wrapper {
+    @include position-center;
+    @include flex-r;
+    width: 900px;
+    height: 520px;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 12px;
+    box-shadow: 0px 0px 20px 2px rgb(0 0 0 / 20%);
+    .left {
+      position: relative;
+      width: 340px;
+      height: 100%;
+      &::after {
+        @include pseudo-element(100%, 1%);
+        height: 98%;
+        width: 1px;
+        background-color: #e6e6e6;
+      }
+    }
+    .right {
+      flex: 1;
+      height: 100%;
+      @include flex-r;
+      flex-direction: column;
+      .logo {
+        height: 40px;
+        margin: 20px 0 60px;
+      }
+      .form-wrapper {
+        width: 360px;
+        .submit-btn {
+          width: 100%;
+        }
+      }
+      .shortcut-btn-list {
+        &-wrapper {
+          margin-top: 12px;
+          width: 360px;
+        }
+        width: 100%;
+        @include vh-center;
+        &-item {
+          &:nth-child(1) {
+            margin-right: 12px;
+          }
+        }
+      }
+    }
+  }
+}

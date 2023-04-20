@@ -15,6 +15,7 @@ export enum ResultCode {
 
 export interface Result<T = any> {
   code: ResultCode
+  // type: ResultType
   message: string
   result: T
 }

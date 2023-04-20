@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
+import { projectIndexRoutePath } from './config'
 export const BasicRoutes: RouteRecordRaw[] = [
   {
     name: 'Login',
@@ -35,6 +36,7 @@ export const NormalRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('@/layouts/Index/index.vue'),
+    redirect: projectIndexRoutePath,
     children: [
       {
         name: 'Home',

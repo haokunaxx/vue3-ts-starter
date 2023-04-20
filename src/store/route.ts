@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { useUserStore } from './user'
+// import { useUserStore } from './user'
 import type { RouteRecordRaw } from 'vue-router'
 import { router } from '@/router/index'
 import { generateRoutesWithRoles } from '@/router/utils'
@@ -9,7 +9,7 @@ import { generateRoutesWithRoles } from '@/router/utils'
 // import { filterRoutesByAuth } from '@/router/utils'
 
 export const useRouteStore = defineStore('routes', () => {
-  const userStore = useUserStore()
+  // const userStore = useUserStore()
 
   const hasRouteGenerated = ref<boolean>(false)
   const removeRoutes: (() => void)[] = [] //用于logout后删除的route
@@ -22,9 +22,9 @@ export const useRouteStore = defineStore('routes', () => {
   // const getMatchRoutes = () => {}
 
   //生成路由
-  const generateAuthRoutes = (authRoutes: RouteRecordRaw[]) => {
+  const generateAuthRoutes = (authRoutes: RouteRecordRaw[], roles) => {
     // rawRoutes = cloneDeep(authRoutes)
-    const res = generateRoutesWithRoles(userStore.roles, authRoutes)
+    const res = generateRoutesWithRoles(roles, authRoutes)
     generatedRoutes.value = res
     console.log(res)
     hasRouteGenerated.value = true

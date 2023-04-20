@@ -30,12 +30,14 @@ export function createAxios(opt?: Partial<CreateAxiosConfig>) {
         transform: cloneDeep(transform),
         requestOptions: {
           errorMessageMode: 'silent',
+          successMessageMode: 'silent',
           retryRequest: {
             isOpen: true,
             count: 5,
             waitTime: 300
           },
-          isReturnNativeResponse: false
+          isReturnNativeResponse: false,
+          formatResponse: true
         }
       },
       opt
@@ -43,4 +45,6 @@ export function createAxios(opt?: Partial<CreateAxiosConfig>) {
   )
 }
 
-export const defHttp = createAxios()
+export const defHttp = createAxios({
+  baseURL: 'http://localhost:5173/api/'
+})

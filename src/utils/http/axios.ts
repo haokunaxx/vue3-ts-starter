@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios'
 import { isFn } from '@/utils/is'
 import type { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios'
 import { CreateAxiosConfig, RequestOptions } from './typings'
-import { Result } from '#/axios'
+import { Result } from '#/axios.d'
 import cloneDeep from 'lodash/cloneDeep'
 
 export class CustomAxios {
@@ -102,7 +102,7 @@ export class CustomAxios {
         .then((res: AxiosResponse<Result>) => {
           if (afterResponseHook && isFn(afterResponseHook)) {
             try {
-              const ret = afterResponseHook(res)
+              const ret = afterResponseHook(res, opt)
               resolve(ret)
             } catch (err) {
               reject(err || new Error('request error!'))

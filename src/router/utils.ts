@@ -5,9 +5,11 @@ import { isString, isArray } from '@/utils/is'
 const hasPermission = (roles: string[], route: RouteRecordRaw): boolean => {
   if (route.meta?.roles) {
     return roles.some((role) => {
+      console.log(route.meta?.roles, role)
       if (isString(route.meta?.roles)) {
         return role === route.meta?.roles
       } else if (isArray(route.meta?.roles)) {
+        console.log((route.meta?.roles as string[]).includes(role))
         return (route.meta?.roles as string[]).includes(role)
       }
     })
@@ -43,18 +45,7 @@ export const generateRoutesWithRoles = (
     return routes
   } else {
     // 根据权限生成
+    console.log(roles)
     return getAuthFilterRoutes(roles, routes)
   }
 }
-
-// const getApplicationList = () => {
-
-// }
-
-// const getSidebarMenuData = (isMultiApplication: boolean, routes: RouteRecordRaw[]) => {
-//   if(isMultiApplication){
-
-//   }else{
-
-//   }
-// }

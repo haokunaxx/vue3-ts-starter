@@ -1,5 +1,5 @@
 import path from 'path'
-import { defineConfig } from 'vite'
+import { UserConfigExport, ConfigEnv, defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -9,6 +9,8 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+
+import { viteMockServe } from 'vite-plugin-mock'
 
 const pathSrc = path.resolve(__dirname, 'src')
 
@@ -22,13 +24,16 @@ const svgIconsPluginCreator = (isBuild: boolean) => {
 }
 // import { ElementPlusResolver } from 'unplugin-vue-components'
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => {
+export default ({ command }: ConfigEnv): UserConfigExport => {
   const isBuild = command === 'build'
-
-  return {
+  return defineConfig({
     plugins: [
       vue(),
       vueJsx({}),
+      viteMockServe({
+        enable: true,
+        mockPath: path.resolve(process.cwd(), 'src/mock')
+      }),
       Icons({
         autoInstall: true
       }),
@@ -73,6 +78,7 @@ export default defineConfig(({ command }) => {
         dts: path.resolve(pathSrc, 'components.d.ts')
       })
     ],
+    // @ts-ignore
     preprocessorOptions: {
       // 导入scss预编译程序
       scss: {
@@ -81,17 +87,18 @@ export default defineConfig(({ command }) => {
     },
     resolve: {
       alias: {
-        '@': '/src'
-      }
-    },
-    server: {
-      proxy: {
-        '/test-api': {
-          target: 'http://localhost:3000',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/test-api/, '')
-        }
+        '@': '/src',
+        '#': '/types'
       }
     }
-  }
-})
+    // server: {
+    //   proxy: {
+    //     '/test-api': {
+    //       target: 'http://localhost:3000',
+    //       changeOrigin: true,
+    //       rewrite: (path) => path.replace(/^\/test-api/, '')
+    //     }
+    //   }
+    // }
+  })
+}

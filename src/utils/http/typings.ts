@@ -6,13 +6,21 @@ export interface RetryRequest {
   waitTime: number
 }
 
+export enum MessageMode {
+  MODAL = 'modal',
+  MESSAGE = 'message',
+  SILENT = 'silent'
+}
+
 export interface RequestOptions {
   // 错误消息提示模式
-  errorMessageMode: 'modal' | 'message' | 'silent'
+  errorMessageMode: MessageMode
+  successMessageMode: MessageMode
   // 重试选项
   retryRequest: RetryRequest
   // 是否返回原生响应头 比如：需要获取响应头时使用该属性
   isReturnNativeResponse: boolean
+  formatResponse: boolean
 }
 
 export abstract class Transform {

@@ -2,11 +2,12 @@ import { defineStore } from 'pinia'
 import { useRouteStore } from './route'
 import { RouteRecordRaw } from 'vue-router'
 
-const IS_MULTI_APPLICATION_APP = true //是否存在多个应用程序
+import { isMultipleApplication } from '@/router/config'
+// const IS_MULTI_APPLICATION_APP = true //是否存在多个应用程序
 
 export const useSettingsStore = defineStore('settings', () => {
   const routeStore = useRouteStore()
-  const isMultiApplication = ref<boolean>(IS_MULTI_APPLICATION_APP)
+  const isMultiApplication = ref<boolean>(isMultipleApplication)
   const activeApplication = ref<string | number>(0)
 
   const applicationList = computed(() => {
